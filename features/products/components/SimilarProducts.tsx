@@ -1,14 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
-import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import type { Swiper as SwiperType } from "swiper";
-import { Star, Heart, ShoppingBag, ChevronLeft, ChevronRight } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Fade, Slide } from "react-awesome-reveal";
+
+import ProductCard from "./ProductCard";
 
 // Import Swiper styles
 import "swiper/css";
@@ -121,13 +118,13 @@ export default function SimilarProducts() {
                     <Swiper
                         modules={[Navigation]}
                         spaceBetween={12}
-                        slidesPerView={4.5}
+                        slidesPerView={4.2}
                         navigation={{
                             nextEl: ".similar-next",
                             prevEl: ".similar-prev",
                         }}
                         breakpoints={{
-                            480: { slidesPerView: 5.5 },
+                            480: { slidesPerView: 5.2 },
                             768: { slidesPerView: 6.5 },
                             1024: { slidesPerView: 7.5 },
                             1280: { slidesPerView: 8.5 },
@@ -137,85 +134,7 @@ export default function SimilarProducts() {
                     >
                         {similarProducts.map((product) => (
                             <SwiperSlide key={product.id}>
-                                <div className="space-y-4">
-                                    {/* Image Card Container */}
-                                    <div className="relative aspect-square bg-[#FBFBFB] border border-[#F0F0F0] rounded-[32px] p-6 flex items-center justify-center">
-                                        {product.discount && (
-                                            <div className="absolute top-4 left-4 z-10">
-                                                <span className="bg-white px-3 py-1.5 rounded-lg text-[10px] font-bold text-[#A4A4A4] shadow-sm border border-[#F0F0F0]">
-                                                    {product.discount}
-                                                </span>
-                                            </div>
-                                        )}
-
-                                        <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
-                                            <button className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-[#C48B8B] hover:bg-[#FBFBFB] transition-all shadow-sm border border-[#F0F0F0]">
-                                                {product.actionIcon === "bag-check" ? (
-                                                    <div className="relative">
-                                                        <div className="w-6 h-6 bg-[#0E3E14] rounded-md flex items-center justify-center">
-                                                            <ShoppingBag className="w-3.5 h-3.5 text-white" />
-                                                        </div>
-                                                    </div>
-                                                ) : (
-                                                    <ShoppingBag className="w-5 h-5 stroke-[1.5px]" />
-                                                )}
-                                            </button>
-                                            <button className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-[#C48B8B] hover:bg-[#FBFBFB] transition-all shadow-sm border border-[#F0F0F0]">
-                                                {product.actionIcon === "bag-check" ? (
-                                                    <Heart className="w-5 h-5 fill-[#0E3E14] text-[#0E3E14]" />
-                                                ) : (
-                                                    <Heart className="w-5 h-5 stroke-[1.5px]" />
-                                                )}
-                                            </button>
-                                        </div>
-
-                                        <div className="relative w-full h-full transition-transform duration-500 hover:scale-110">
-                                            <Image
-                                                src={product.image}
-                                                alt={product.title}
-                                                fill
-                                                className="object-contain"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    {/* Info Section */}
-                                    <div className="space-y-2.5 px-1">
-                                        <div className="flex justify-between items-center">
-                                            <span className="text-[#717171] text-xs font-medium">{product.category}</span>
-                                            <div className="flex items-center gap-1">
-                                                <Star className="w-3.5 h-3.5 fill-[#C48B8B] text-[#C48B8B]" />
-                                                <span className="font-bold text-xs">4.5</span>
-                                                <span className="text-[#A4A4A4] text-[10px]">(2010)</span>
-                                            </div>
-                                        </div>
-
-                                        <h3 className="font-semibold text-[13px] leading-tight text-[#1A1A1A] line-clamp-2">
-                                            {product.title}
-                                        </h3>
-
-                                        <div className="flex justify-between items-end pt-1">
-                                            <div className="flex flex-col">
-                                                <span className="font-bold text-sm text-[#1A1A1A]">AED {product.price}</span>
-                                                {product.oldPrice && (
-                                                    <span className="text-[#A4A4A4] line-through text-[11px]">AED {product.oldPrice}</span>
-                                                )}
-                                            </div>
-                                            <div className="flex items-center gap-1.5">
-                                                <div className="flex items-center -space-x-1.5">
-                                                    {product.colors.map((color, i) => (
-                                                        <div
-                                                            key={i}
-                                                            className="w-5 h-5 rounded-full border-2 border-white shadow-sm"
-                                                            style={{ backgroundColor: color }}
-                                                        />
-                                                    ))}
-                                                </div>
-                                                <span className="text-[11px] font-bold text-[#1A1A1A]">+{product.extraColors}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <ProductCard product={product} />
                             </SwiperSlide>
                         ))}
                     </Swiper>
