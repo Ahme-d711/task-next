@@ -29,7 +29,7 @@ export default function ProductCard({ product, className }: ProductCardProps) {
             <div className="relative aspect-square bg-[#FBFBFB] border border-[#F0F0F0] rounded-[32px] p-3 flex items-center justify-center">
                 {product.discount && (
                     <div className="absolute top-4 left-4 z-10">
-                        <span className="bg-white px-3 py-1.5 rounded-lg text-[10px] font-bold text-[#A4A4A4] shadow-sm border border-[#F0F0F0]">
+                        <span className="bg-white px-3 py-1.5 rounded-lg text-[10px] font-bold text-primary shadow-sm border border-[#F0F0F0]">
                             {product.discount}
                         </span>
                     </div>

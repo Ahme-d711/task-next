@@ -29,24 +29,28 @@ export default function ProductsHero({
                 </div>
             </Fade>
 
-            {/* Content */}
-            <div className="relative z-10 flex items-center justify-center text-center">
+            {/* Content Container */}
+            <div className="relative z-10 h-full w-full flex items-center justify-center">
                 {/* Outline Background Text */}
-                <Zoom triggerOnce>
-                    <h2
-                        className="absolute min-w-[628px] text-[80px] font-bold text-transparent pointer-events-none select-none"
-                        style={{ WebkitTextStroke: "1px #E5E5E5" }}
-                    >
-                        {displayOutline}
-                    </h2>
-                </Zoom>
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
+                    <Zoom triggerOnce>
+                        <h2
+                            className="whitespace-nowrap text-[70px] md:text-[100px] lg:text-[120px] font-bold text-transparent leading-none"
+                            style={{ WebkitTextStroke: "1px #E5E5E5" }}
+                        >
+                            {displayOutline}
+                        </h2>
+                    </Zoom>
+                </div>
 
                 {/* Main Title */}
-                <Fade direction="up" triggerOnce delay={300}>
-                    <h1 className="text-3xl md:text-4xl font-bold text-foreground z-10">
-                        {title}
-                    </h1>
-                </Fade>
+                <div className="relative z-10">
+                    <Fade direction="up" triggerOnce delay={300}>
+                        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1A1A1A] text-center leading-tight">
+                            {title}
+                        </h1>
+                    </Fade>
+                </div>
             </div>
         </section>
     );

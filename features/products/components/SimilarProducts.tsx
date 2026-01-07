@@ -1,8 +1,9 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Navigation, Autoplay } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import React, { useState, useEffect } from "react";
 import { Fade, Slide } from "react-awesome-reveal";
 
 import ProductCard from "./ProductCard";
@@ -100,6 +101,16 @@ const similarProducts = [
 ];
 
 export default function SimilarProducts() {
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    if (!isMounted) {
+        return <div className="py-12 min-h-[400px]" />;
+    }
+
     return (
         <section className="w-full py-12 overflow-hidden">
             {/* Title Container - Still constrained to 1440px */}
@@ -114,27 +125,29 @@ export default function SimilarProducts() {
 
             {/* Slider Container - Bleeds to the right */}
             <div className="relative group/swiper pl-5 md:pl-8 lg:pl-10 2xl:pl-[calc((100vw-1440px)/2+2.5rem)]">
-                <Slide direction="right" triggerOnce cascade damping={0.1}>
+                <Slide direction="right" triggerOnce>
                     <Swiper
                         modules={[Navigation]}
-                        spaceBetween={12}
-                        slidesPerView={4.2}
+                        spaceBetween={13}
+                        slidesPerView={1.5}
+                        grabCursor={true}
                         navigation={{
                             nextEl: ".similar-next",
                             prevEl: ".similar-prev",
                         }}
                         breakpoints={{
-                            480: { slidesPerView: 5.2 },
-                            768: { slidesPerView: 6.5 },
-                            1024: { slidesPerView: 7.5 },
-                            1280: { slidesPerView: 8.5 },
-                            1536: { slidesPerView: 10.2 },
+                            480: { slidesPerView: 2 },
+                            768: { slidesPerView: 3.5 },
+                            1024: { slidesPerView: 4.5 },
+                            1280: { slidesPerView: 5.5 },
                         }}
                         className="pb-16"
                     >
                         {similarProducts.map((product) => (
                             <SwiperSlide key={product.id}>
-                                <ProductCard product={product} />
+                                <div className="transition-all duration-300">
+                                    <ProductCard product={product} />
+                                </div>
                             </SwiperSlide>
                         ))}
                     </Swiper>
