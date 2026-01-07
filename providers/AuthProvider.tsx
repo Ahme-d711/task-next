@@ -12,18 +12,14 @@ export default function AuthProvider({
   user: User | null;
   children: ReactNode;
 }) {
-  const { setUser, setToken } = useAuthStore((state) => state);
+  const setAuth = useAuthStore((state) => state.setAuth);
 
   useEffect(() => {
-    // Set token if available (can be used later even without user)
-    if (token) {
-      setToken(token);
+    // Set both token and user using setAuth
+    if (token || user) {
+      setAuth(token, user);
     }
-    // Set user if available
-    if (user) {
-      setUser(user);
-    }
-  }, [token, user, setUser, setToken]);
+  }, [token, user, setAuth]);
 
   return <>{children}</>;
 }
