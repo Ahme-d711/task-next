@@ -82,7 +82,7 @@ export default function VerifyForm() {
   };
 
   return (
-    <div className="w-full max-w-md space-y-8 rounded-lg border border-border bg-card p-8 shadow-sm">
+    <div className="w-full max-w-xl space-y-8 rounded-lg border border-border bg-card p-8 shadow-sm">
       <div>
         <h1 className="text-center text-2xl font-bold">Verify Your Account</h1>
         <p className="mt-2 text-center text-sm text-muted-foreground">

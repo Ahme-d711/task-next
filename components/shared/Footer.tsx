@@ -8,7 +8,10 @@ import {
     Instagram,
     Linkedin,
     MessageCircle, // Proxy for WhatsApp
-    Send
+    Send,
+    Phone,
+    Mail,
+    MapPin
 } from "lucide-react";
 
 export default function Footer() {
@@ -16,21 +19,40 @@ export default function Footer() {
         <footer
             className="w-full text-white relative overflow-hidden mt-12 bg-[#3B3026]"
             style={{
-                backgroundImage: 'linear-gradient(rgba(59, 48, 38, 0.9), rgba(50, 44, 38, 0.9)), url("/footer-bg.svg")',
+                backgroundImage: 'linear-gradient(rgba(2, 2, 2, 0.5), rgba(2, 2, 2, 0.5)), url("/footer-bg.svg")',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center'
             }}
         >
             <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-16 py-16 md:py-20 relative z-10">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div className="grid grid-cols-2 lg:grid-cols-6 gap-12">
                     {/* Brand Section */}
-                    <div className="space-y-6">
+                    <div className="space-y-6 col-span-2 lg:col-span-2">
                         <div className="flex items-center gap-2">
                             <Image src="/logo.svg" alt="Tinytales" width={100} height={40} className="brightness-0 invert" />
                         </div>
                         <p className="text-[#D1D1D1] leading-relaxed text-sm max-w-[280px]">
-                            Ipsam in eos qui consequatur ab cum maxime.Soluta dolor quae ipsam in eos qui consequatur ab .Soluta dolor quae ipsam in eos quonsequatur ab cum maxime.Soluta dolor quae
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
                         </p>
+                    </div>
+
+                    {/* Contact Us */}
+                    <div className="space-y-6">
+                        <h3 className="text-xl font-bold">Contact Us</h3>
+                        <ul className="space-y-4">
+                            <li className="flex items-center gap-3">
+                                <Phone className="w-5 h-5 text-white" />
+                                <span className="text-[#D1D1D1] text-sm">+87 01928491</span>
+                            </li>
+                            <li className="flex items-center gap-3">
+                                <Mail className="w-5 h-5 text-white" />
+                                <span className="text-[#D1D1D1] text-sm">Named@gmail.com</span>
+                            </li>
+                            <li className="flex items-center gap-3">
+                                <MapPin className="w-5 h-5 text-white" />
+                                <span className="text-[#D1D1D1] text-sm">381, cairo, egypt</span>
+                            </li>
+                        </ul>
                     </div>
 
                     {/* Let Us Help */}
@@ -39,28 +61,17 @@ export default function Footer() {
                         <ul className="space-y-4">
                             <li><Link href="#" className="text-[#D1D1D1] hover:text-white transition-colors text-sm">My Account</Link></li>
                             <li><Link href="#" className="text-[#D1D1D1] hover:text-white transition-colors text-sm">FAQs</Link></li>
+                            <li><Link href="#" className="text-[#D1D1D1] hover:text-white transition-colors text-sm">Contact & Support</Link></li>
                             <li><Link href="#" className="text-[#D1D1D1] hover:text-white transition-colors text-sm">Categories</Link></li>
                             <li><Link href="#" className="text-[#D1D1D1] hover:text-white transition-colors text-sm">All Products</Link></li>
                         </ul>
                     </div>
 
-                    {/* Policies */}
-                    <div className="space-y-6">
-                        <h3 className="text-xl font-bold">Policies</h3>
-                        <ul className="space-y-4">
-                            <li><Link href="#" className="text-[#D1D1D1] hover:text-white transition-colors text-sm">Refund Policy</Link></li>
-                            <li><Link href="#" className="text-[#D1D1D1] hover:text-white transition-colors text-sm">About Us</Link></li>
-                            <li><Link href="#" className="text-[#D1D1D1] hover:text-white transition-colors text-sm">Cancellation Policy</Link></li>
-                            <li><Link href="#" className="text-[#D1D1D1] hover:text-white transition-colors text-sm">Terms and Conditions</Link></li>
-                            <li><Link href="#" className="text-[#D1D1D1] hover:text-white transition-colors text-sm">Privacy Policy</Link></li>
-                        </ul>
-                    </div>
-
                     {/* Newsletter and Social */}
-                    <div className="space-y-8">
+                    <div className="space-y-8 col-span-2 lg:col-span-2">
                         <div className="space-y-4">
                             <h3 className="text-xl font-bold">Send Email</h3>
-                            <div className="relative flex items-center bg-white rounded-2xl p-1.5 h-[64px]">
+                            <div className="relative flex items-center bg-white rounded-2xl p-2 h-[64px]">
                                 <input
                                     type="email"
                                     placeholder="Email address"

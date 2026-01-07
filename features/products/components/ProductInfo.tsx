@@ -10,7 +10,7 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import { Star, Heart, ShoppingBag, Minus, Plus } from "lucide-react";
+import { Heart, ShoppingBag, Minus, Plus } from "lucide-react";
 import { Fade, Slide, AttentionSeeker } from "react-awesome-reveal";
 import { cn } from "@/lib/utils";
 
@@ -78,11 +78,11 @@ export default function ProductInfo() {
                 <div className="flex flex-col space-y-6">
                     <Slide direction="up" triggerOnce cascade damping={0.1}>
                         <div className="relative group">
-                            <label className="absolute -top-3 left-6 z-10 bg-white px-2 text-sm font-medium text-black transition-colors group-focus-within:text-primary">
+                            <label className="absolute -top-3 left-8 z-10 bg-white px-2 text-sm font-medium text-black transition-colors group-focus-within:text-primary">
                                 Type
                             </label>
                             <Select defaultValue="cotton">
-                                <SelectTrigger className="w-1/2 h-12 bg-background border-[#E5E5E5] rounded-[20px] px-6 text-base font-semibold focus:ring-primary focus:border-primary">
+                                <SelectTrigger className="md:w-1/2 w-full min-h-12 bg-background border-[#E5E5E5] rounded-lg px-8 text-base font-semibold focus:ring-primary focus:border-primary">
                                     <SelectValue placeholder="Select type" />
                                 </SelectTrigger>
                                 <SelectContent className="rounded-xl border-[#E5E5E5]">
@@ -93,11 +93,11 @@ export default function ProductInfo() {
                             </Select>
                         </div>
                         <div className="relative group">
-                            <label className="absolute -top-3 left-6 z-10 bg-white px-2 text-sm font-medium text-black transition-colors group-focus-within:text-primary">
+                            <label className="absolute -top-3 left-8 z-10 bg-white px-2 text-sm font-medium text-black transition-colors group-focus-within:text-primary">
                                 Size
                             </label>
                             <Select defaultValue="2xl">
-                                <SelectTrigger className="w-1/2 h-12 bg-background border-[#E5E5E5] rounded-[20px] px-6 text-base font-semibold focus:ring-primary focus:border-primary">
+                                <SelectTrigger className="md:w-1/2 w-full min-h-12 bg-background border-[#E5E5E5] rounded-lg px-8 text-base font-semibold focus:ring-primary focus:border-primary">
                                     <SelectValue placeholder="Select size" />
                                 </SelectTrigger>
                                 <SelectContent className="rounded-xl border-[#E5E5E5]">

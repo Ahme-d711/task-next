@@ -15,6 +15,33 @@ import { FormField } from "@/components/ui/form-field";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+const countryCodes = [
+  { code: "971", country: "UAE" },
+  { code: "1", country: "USA/Canada" },
+  { code: "44", country: "UK" },
+  { code: "966", country: "Saudi Arabia" },
+  { code: "965", country: "Kuwait" },
+  { code: "974", country: "Qatar" },
+  { code: "973", country: "Bahrain" },
+  { code: "968", country: "Oman" },
+  { code: "20", country: "Egypt" },
+  { code: "33", country: "France" },
+  { code: "49", country: "Germany" },
+  { code: "39", country: "Italy" },
+  { code: "34", country: "Spain" },
+  { code: "61", country: "Australia" },
+  { code: "81", country: "Japan" },
+  { code: "86", country: "China" },
+  { code: "91", country: "India" },
+];
 
 export default function RegisterForm() {
   const { register: registerUser, loading, error: hookError } = useRegister();
@@ -23,10 +50,17 @@ export default function RegisterForm() {
   const {
     register,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
+    defaultValues: {
+      mobile_country_code: "971",
+    },
   });
+
+  const selectedCountryCode = watch("mobile_country_code");
 
   useEffect(() => {
     if (hookError) {
@@ -84,27 +118,57 @@ export default function RegisterForm() {
           register={register("email")}
         />
 
-        <FormField
-          label="Mobile Country Code"
-          name="mobile_country_code"
-          type="text"
-          placeholder="971"
-          error={errors.mobile_country_code}
-          disabled={loading}
-          required
-          register={register("mobile_country_code")}
-        />
-
-        <FormField
-          label="Mobile Number"
-          name="mobile"
-          type="tel"
-          placeholder="Enter your mobile number"
-          error={errors.mobile}
-          disabled={loading}
-          required
-          register={register("mobile")}
-        />
+        <div className="space-y-2">
+          <Label htmlFor="mobile">
+            Mobile Number
+            <span className="text-destructive">*</span>
+          </Label>
+          <div className="flex gap-2">
+            <Select
+              value={selectedCountryCode}
+              onValueChange={(value) => setValue("mobile_country_code", value)}
+              disabled={loading}
+            >
+              <SelectTrigger className="w-[140px]">
+                <SelectValue placeholder="Code" />
+              </SelectTrigger>
+              <SelectContent>
+                {countryCodes.map((country) => (
+                  <SelectItem key={country.code} value={country.code}>
+                    +{country.code} ({country.country})
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <div className="flex-1">
+              <Input
+                id="mobile"
+                type="tel"
+                placeholder="Enter your mobile number"
+                disabled={loading}
+                required
+                aria-invalid={errors.mobile ? "true" : "false"}
+                aria-describedby={errors.mobile ? "mobile-error" : undefined}
+                className={errors.mobile ? "border-destructive" : ""}
+                {...register("mobile")}
+              />
+            </div>
+          </div>
+          {errors.mobile_country_code && (
+            <p className="text-sm text-destructive" role="alert">
+              {errors.mobile_country_code.message}
+            </p>
+          )}
+          {errors.mobile && (
+            <p
+              id="mobile-error"
+              className="text-sm text-destructive"
+              role="alert"
+            >
+              {errors.mobile.message}
+            </p>
+          )}
+        </div>
 
         <div className="space-y-2">
           <Label htmlFor="password">
@@ -119,7 +183,7 @@ export default function RegisterForm() {
               disabled={loading}
               required
               aria-invalid={errors.password ? "true" : "false"}
-              aria-describedby={errors.password ? "password-error" : undefined}
+              aria-describedby={errors.password ? "password-error" : "password-hint"}
               className="pr-10"
               {...register("password")}
             />
@@ -136,6 +200,11 @@ export default function RegisterForm() {
               )}
             </button>
           </div>
+          {!errors.password && (
+            <p id="password-hint" className="text-xs text-muted-foreground">
+              Password must be at least 8 characters, contain a letter, and include @ symbol
+            </p>
+          )}
           {errors.password && (
             <p
               id="password-error"
