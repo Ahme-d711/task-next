@@ -1,4 +1,8 @@
+import React from "react";
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
+import { Fade } from "react-awesome-reveal";
+import { cn } from "@/lib/utils";
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -19,33 +23,40 @@ interface ProductBreadcrumbProps {
 
 export default function ProductBreadcrumb({ items }: ProductBreadcrumbProps) {
     return (
-        <div className="container max-w-[1440px] mx-auto px-5 md:px-8 lg:px-10 -mt-10 relative z-20 w-full">
-            <div className="bg-[#ECECEC66] rounded-2xl px-6 py-4 shadow-sm inline-block w-full">
+        <Fade direction="right" triggerOnce>
+            <nav className="container max-w-[1440px] mx-auto px-5 md:px-8 lg:px-10 py-6">
                 <Breadcrumb>
-                    <BreadcrumbList>
+                    <BreadcrumbList className="flex items-center gap-2">
                         {items.map((item, index) => (
-                            <React.Fragment key={item.label}>
+                            <React.Fragment key={index}>
                                 <BreadcrumbItem>
                                     {item.href ? (
-                                        <BreadcrumbLink asChild>
-                                            <Link href={item.href} className="text-black hover:text-black-200 text-base">
-                                                {item.label}
-                                            </Link>
+                                        <BreadcrumbLink
+                                            asChild
+                                            className={cn(
+                                                "text-sm font-medium transition-colors hover:text-primary",
+                                                index === 0 ? "text-primary" : "text-muted-foreground"
+                                            )}
+                                        >
+                                            <Link href={item.href}>{item.label}</Link>
                                         </BreadcrumbLink>
                                     ) : (
-                                        <BreadcrumbPage className="font-semibold text-black-200 text-base">
+                                        <BreadcrumbPage className="text-sm font-medium text-muted-foreground">
                                             {item.label}
                                         </BreadcrumbPage>
                                     )}
                                 </BreadcrumbItem>
-                                {index < items.length - 1 && <BreadcrumbSeparator />}
+                                {index < items.length - 1 && (
+                                    <BreadcrumbSeparator className="text-muted-foreground/40">
+                                        <ChevronRight className="w-4 h-4" />
+                                    </BreadcrumbSeparator>
+                                )}
                             </React.Fragment>
                         ))}
                     </BreadcrumbList>
                 </Breadcrumb>
-            </div>
-        </div>
+            </nav>
+        </Fade>
     );
 }
 
-import * as React from "react";
