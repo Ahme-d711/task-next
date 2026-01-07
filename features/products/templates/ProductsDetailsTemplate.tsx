@@ -1,7 +1,9 @@
 import ProductsHero from "../components/ProductsHero";
 import ProductBreadcrumb from "../components/ProductBreadcrumb";
+import ProductDetails from "../components/ProductDetails";
+import ProductReviews from "../components/ProductReviews";
 
-export default function ProductsTemplate() {
+export default function ProductsDetailsTemplate() {
   const breadcrumbItems = [
     { label: "Home", href: "/" },
     { label: "Our Category", href: "/category" },
@@ -13,8 +15,12 @@ export default function ProductsTemplate() {
       <ProductsHero />
       <ProductBreadcrumb items={breadcrumbItems} />
 
+      <ProductDetails />
+
+      <ProductReviews />
+
       <div className="container mx-auto px-4 py-12">
-        {/* Product details content will go here */}
+        {/* Related products or other content could go here */}
       </div>
     </main>
   );

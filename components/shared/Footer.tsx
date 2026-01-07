@@ -1,0 +1,104 @@
+"use client";
+
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import {
+    Facebook,
+    Twitter,
+    Instagram,
+    Linkedin,
+    MessageCircle, // Proxy for WhatsApp
+    Send
+} from "lucide-react";
+
+export default function Footer() {
+    return (
+        <footer className="container mx-auto px-4 py-8">
+            <div
+                className="rounded-[40px] bg-[#3B3026] text-white p-10 md:p-16 relative overflow-hidden"
+                style={{
+                    backgroundImage: 'linear-gradient(rgba(59, 48, 38, 0.9), rgba(59, 48, 38, 0.9)), url("https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80")',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                }}
+            >
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
+                    {/* Brand Section */}
+                    <div className="space-y-6">
+                        <div className="flex items-center gap-2">
+                            <Image src="/logo.svg" alt="Tinytales" width={150} height={40} className="brightness-0 invert" />
+                        </div>
+                        <p className="text-[#D1D1D1] leading-relaxed text-sm max-w-[280px]">
+                            Ipsam in eos qui consequatur ab cum maxime.Soluta dolor quae ipsam in eos qui consequatur ab .Soluta dolor quae ipsam in eos quonsequatur ab cum maxime.Soluta dolor quae
+                        </p>
+                    </div>
+
+                    {/* Let Us Help */}
+                    <div className="space-y-6">
+                        <h3 className="text-xl font-bold">Let Us Help</h3>
+                        <ul className="space-y-4">
+                            <li><Link href="#" className="text-[#D1D1D1] hover:text-white transition-colors text-sm">My Account</Link></li>
+                            <li><Link href="#" className="text-[#D1D1D1] hover:text-white transition-colors text-sm">FAQs</Link></li>
+                            <li><Link href="#" className="text-[#D1D1D1] hover:text-white transition-colors text-sm">Categories</Link></li>
+                            <li><Link href="#" className="text-[#D1D1D1] hover:text-white transition-colors text-sm">All Products</Link></li>
+                        </ul>
+                    </div>
+
+                    {/* Policies */}
+                    <div className="space-y-6">
+                        <h3 className="text-xl font-bold">Policies</h3>
+                        <ul className="space-y-4">
+                            <li><Link href="#" className="text-[#D1D1D1] hover:text-white transition-colors text-sm">Refund Policy</Link></li>
+                            <li><Link href="#" className="text-[#D1D1D1] hover:text-white transition-colors text-sm">About Us</Link></li>
+                            <li><Link href="#" className="text-[#D1D1D1] hover:text-white transition-colors text-sm">Cancellation Policy</Link></li>
+                            <li><Link href="#" className="text-[#D1D1D1] hover:text-white transition-colors text-sm">Terms and Conditions</Link></li>
+                            <li><Link href="#" className="text-[#D1D1D1] hover:text-white transition-colors text-sm">Privacy Policy</Link></li>
+                        </ul>
+                    </div>
+
+                    {/* Newsletter and Social */}
+                    <div className="space-y-8">
+                        <div className="space-y-4">
+                            <h3 className="text-xl font-bold">Send Email</h3>
+                            <div className="relative flex items-center bg-white rounded-2xl p-1.5 h-[64px]">
+                                <input
+                                    type="email"
+                                    placeholder="Email address"
+                                    className="bg-transparent border-none outline-none flex-1 px-4 text-black text-sm placeholder:text-[#8A8A8A]"
+                                />
+                                <button className="bg-primary hover:bg-primary/90 text-white px-8 h-full rounded-xl font-bold transition-colors">
+                                    Send
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="space-y-4">
+                            <p className="text-sm font-bold">Follow Us</p>
+                            <div className="flex gap-4">
+                                <Link href="#" className="p-2 hover:text-primary transition-colors">
+                                    <Facebook className="w-5 h-5 fill-current" />
+                                </Link>
+                                <Link href="#" className="p-2 hover:text-primary transition-colors">
+                                    <Twitter className="w-5 h-5 fill-current" />
+                                </Link>
+                                <Link href="#" className="p-2 hover:text-primary transition-colors">
+                                    <Instagram className="w-5 h-5" />
+                                </Link>
+                                <Link href="#" className="p-2 hover:text-primary transition-colors">
+                                    <Linkedin className="w-5 h-5 fill-current" />
+                                </Link>
+                                <Link href="#" className="p-2 hover:text-primary transition-colors">
+                                    <MessageCircle className="w-5 h-5 fill-current" />
+                                </Link>
+                                <Link href="#" className="p-2 hover:text-primary transition-colors">
+                                    <Send className="w-5 h-5" />
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    );
+}

@@ -19,7 +19,7 @@ interface ProductBreadcrumbProps {
 
 export default function ProductBreadcrumb({ items }: ProductBreadcrumbProps) {
     return (
-        <div className="container mx-auto px-4 -mt-10 relative z-20 w-full">
+        <div className="container max-w-[1440px] mx-auto px-5 md:px-8 lg:px-10 -mt-10 relative z-20 w-full">
             <div className="bg-[#ECECEC66] rounded-2xl px-6 py-4 shadow-sm inline-block w-full">
                 <Breadcrumb>
                     <BreadcrumbList>

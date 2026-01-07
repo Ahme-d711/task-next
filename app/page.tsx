@@ -1,5 +1,5 @@
-import ProductsTemplate from "@/features/products/templates/ProductsTemplate";
+import ProductsDetailsTemplate from "@/features/products/templates/ProductsDetailsTemplate";
 
 export default function Home() {
-  return <ProductsTemplate />;
+  return <ProductsDetailsTemplate />;
 }
