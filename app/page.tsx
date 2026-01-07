@@ -1,7 +1,5 @@
+import ProductsTemplate from "@/features/products/templates/ProductsTemplate";
+
 export default function Home() {
-  return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
-  );
+  return <ProductsTemplate />;
 }
